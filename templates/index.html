@@ -462,6 +462,142 @@
         // - Smooth scroll: Funcional
         //
         // ========================================
+
+        // ========================================
+        // PRUEBAS DE API - CONSOLA DE DESARROLLADOR
+        // ========================================
+        // 
+        // ARCHIVO: templates/index.html
+        // FECHA: 2026-02-22
+        // ACTIVIDAD: CRISPY-ENIGMA-01
+        //
+        // ========================================
+        // DESCRIPCIÓN
+        // ========================================
+        // 
+        // Se agregó un módulo de pruebas de API que:
+        // - Realiza peticiones HTTP GET a /api-mike/empleados/
+        // - Captura el status_code de la respuesta
+        // - Muestra la respuesta en formato JSON
+        // - Imprime resultados en la consola del navegador (F12)
+        // - Se ejecuta automáticamente al cargar la página
+        //
+        // ========================================
+        // CÓMO FUNCIONA
+        // ========================================
+        //
+        // 1. Al cargar index.html en el navegador
+        // 2. Se dispara el evento 'DOMContentLoaded'
+        // 3. Se ejecuta la función async de pruebas
+        // 4. Realiza fetch() a http://127.0.0.1:8000/api-mike/empleados/
+        // 5. Captura response.status (ej: 200, 404, 500)
+        // 6. Captura response.json() (datos de la API)
+        // 7. Imprime en consola con estilos personalizados
+        //
+        // ========================================
+        // CÓMO VER LOS RESULTADOS
+        // ========================================
+        //
+        // 1. Abre: http://127.0.0.1:8000/
+        // 2. Presiona: F12 (o click derecho → Inspeccionar)
+        // 3. Ve a: Pestaña "Consola"
+        // 4. Verás:
+        //    - 🔷 === PRUEBAS DE API ===
+        //    - API: GEO MIKE - Empleados
+        //    - Status Code: 200 OK
+        //    - Response JSON: [datos de empleados]
+        //
+        // ========================================
+        // ESTRUCTURA DEL SCRIPT
+        // ========================================
+        //
+        // • Event Listener: DOMContentLoaded
+        //   └─ Se ejecuta cuando HTML está completamente cargado
+        //
+        // • URL Base: http://127.0.0.1:8000
+        //   └─ Dirección del servidor Django
+        //
+        // • Endpoint: /api-mike/empleados/
+        //   └─ Ruta del router registrado en core_api
+        //
+        // • fetch(): Realiza petición HTTP GET
+        //   └─ response.status: Código HTTP (200, 404, etc)
+        //   └─ response.json(): Convierte respuesta a JSON
+        //
+        // • console.log(): Imprime en consola
+        //   └─ Con estilos CSS personalizados para claridad
+        //
+        // ========================================
+        // EJEMPLO DE SALIDA EN CONSOLA
+        // ========================================
+        //
+        // 🔷 === PRUEBAS DE API ===
+        // API: GEO MIKE - Empleados
+        //
+        // 📤 GET /api-mike/empleados/
+        // ✓ Status Code: 200 OK
+        // Response JSON: Array(9)
+        //   ├─ 0: {id: 1, nombre: "Juan", email: "juan@test.com"}
+        //   ├─ 1: {id: 2, nombre: "María", email: "maria@test.com"}
+        //   └─ ... más empleados
+        //
+        // === FIN DE PRUEBAS ===
+        //
+        // ========================================
+        // INFORMACIÓN TÉCNICA
+        // ========================================
+        //
+        // • Método HTTP: GET
+        // • Content-Type: application/json
+        // • Sin autenticación requerida
+        // • Timeout: Por defecto del navegador
+        // • Endpoint registrado en: core_api/routers.py
+        // • ViewSet: EmpleadoViewSet en core_api/Viewsets/
+        //
+        // ========================================
+        // CAMBIOS REALIZADOS
+        // ========================================
+        //
+        // ✓ Agregado: Event listener DOMContentLoaded
+        // ✓ Agregado: Fetch GET a /api-mike/empleados/
+        // ✓ Agregado: Captura de status_code
+        // ✓ Agregado: Impresión de Response JSON
+        // ✓ Agregado: Estilos console.log personalizados
+        // ✓ No modificado: Ninguna funcionalidad existente
+        // ✓ No modificado: HTML/CSS/Funciones anteriores
+        //
+        // ========================================
+        // FUNCIONALIDAD PRESERVADA
+        // ========================================
+        //
+        // ✅ Menú móvil funcional
+        // ✅ Geolocalización funcional
+        // ✅ Formulario de contacto funcional
+        // ✅ Carga de ubicaciones funcional
+        // ✅ Smooth scroll funcional
+        // ✅ Toda la interfaz minimalista intacta
+        //
+        // ========================================
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const baseUrl = 'http://127.0.0.1:8000';
+            
+            console.log('%c🔷 === PRUEBAS DE API ===', 'color: #0d47a1; font-weight: bold; font-size: 14px;');
+            console.log('%cAPI: GEO MIKE - Empleados', 'color: #00aaff; font-weight: bold;');
+            
+            try {
+                console.log('\n📤 GET /api-mike/empleados/');
+                const response = await fetch(`${baseUrl}/api-mike/empleados/`);
+                console.log(`✓ Status Code: ${response.status} ${response.statusText}`);
+                
+                const data = await response.json();
+                console.log('Response JSON:', data);
+            } catch (error) {
+                console.log(`❌ Error: ${error.message}`);
+            }
+            
+            console.log('%c=== FIN DE PRUEBAS ===', 'color: #0d47a1; font-weight: bold; font-size: 12px;');
+        });
     </script>
 </body>
 </html>
